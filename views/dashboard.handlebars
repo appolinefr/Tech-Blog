@@ -6,3 +6,87 @@ WHEN I click on the button to create a new blog post
 THEN the title and contents of my post are saved and I am taken back to an updated dashboard with my new blog post
 WHEN I click on one of my existing posts in the dashboard
 THEN I am able to delete or update my post and taken back to an updated dashboard --}}
+<section class="section">
+  <div class="columns is-mobile is-centered">
+    <div class="column is-narrow">
+      <div class="container">
+        <div class="content">
+          <div
+            class="box title is-2 is-light is-large has-text-centered p-5"
+          >Welcome,
+            {{user.name}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="columns is-mobile is-centered">
+    <div class="column is-three-quarters-mobile is-one-third-tablet is-one-third-desktop is-one-quarter-widescreen is-one-fifth-fullhd">
+      <div class="container">
+        {{! card to create a new game }}
+        <div class="card mt-4 mb-6">
+          <div class="card-content">
+            <div class="content has-text-centered">
+              <h2 class="subtitle">Create a new blogpost!</h2>
+              <div class="card-body">
+                <div class="field">
+                  <label class="label new-game-name">Title of new post</label>
+                  <div class="control">
+                    <input class="input" type="text" id="new-post-title" />
+                  </div>
+                </div>
+                 <div class="field">
+                  <label class="label new-game-name">Content of new post</label>
+                  <div class="control">
+                    <input class="input" type="text" id="new-post-content" />
+                  </div
+                <div class="field">
+                  <div class="control">
+                    <button
+                      class="button has-background-danger-dark has-text-white new-post-btn"
+                      type="submit"
+                    >
+                      <i
+                        class="fa fa-circle-o-notch fa-spin mr-3 is-disabled"
+                        id="spinner"
+                      ></i>Create</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="columns has-text-centered is-centered is-mobile is-flex-wrap-wrap">
+    {{! each blogPost will appear as a card with a button to update a post and a button to delete a post}}
+    {{#if blogPosts}}
+      {{#each blogPosts as |blogPost|}}
+        <div class="column is-three-quarters-mobile is-one-third-tablet is-one-third-desktop is-one-quarter-widescreen is-one-fifth-fullhd">
+          <div class="container">
+            <div class="card m-3" data-id="{{blogPost.id}}">
+              <div class="card-content has-text-centered">
+                <div class="content">
+                  <h2 class="subtitle">Title: {{blogPost.title}}</h2>
+                  <div class="card-body">
+                    <p class="has-text-centered">{{blogPost.date_created}}</p>
+                    <p class="has-text-centered">{{blogPost.content}}</p>
+                    <button
+                      class="button has-background-danger-dark has-text-white existing-game mt-2 delete-post-btn"
+                      data-id="{{blogPost.id}}"
+                    >Update post</button>
+                    <button
+                      class="button has-background-danger-dark has-text-white existing-game mt-2 update-post-btn"
+                      data-id="{{blogPost.id}}"
+                    >Delete post</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {{/each}}
+    {{/if}}
+  </div>
+</section>
+ <script src="../public/js/dashboard.js"></script>
