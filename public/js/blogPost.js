@@ -1,50 +1,33 @@
-// handler creating a new game/saveFile/character
-const newPostHandler = async (event) => {
-  event.preventDefault();
+// the blogpost page is the homepage where all posts are displayed. You can add comments on posts
 
-  const postTitle = document.querySelector("#new-post-title").value.trim();
-  const postcontent = document.querySelector("#new-post-content").value.trim();
+async function getAllPosts() {
+  //route to fill out
+  const response = await fetch(`/api/blogPost`, { method: "GET" });
+  const responseData = await response.json();
 
-  if (postTitle && postcontent) {
-    //route to fill out
-    const response = await fetch(`/api/`, {
-      method: "POST",
-      body: JSON.stringify({ postTitle, postcontent}),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+  if (response.ok === false) console.log("Failed to get posts");
+  else return responseData;
+}
 
-    //route to fill out
-    if (response.ok) {
-      document.location.replace("/");
-    } else {
-      alert("Failed to create new post!");
-    }
-  }
-};
-
-//deleting a game/saveFile/character
-const deletePostHandler = async (event) => {
+const addCommentPostHandler = async (event) => {
+  //check data-id or replace with post id
   if (event.target.hasAttribute("data-id")) {
     const postId = event.target.getAttribute("data-id");
 
-    //route to maybe change
-    const response = await fetch(`/api/posts/${postId}`, {
-      method: "DELETE",
+    //check route
+    const response = await fetch(`/api/blogPost/${postId}`, {
+      method: "POST",
     });
 
     //route to fill out
     if (response.ok) {
-      document.location.replace("/");
+      document.location.replace("/blogpost");
     } else {
-      alert("Failed to delete game");
+      alert("Failed to comment on post");
     }
   }
 };
 
-document.querySelector(".new-post-btn").addEventListener("submit", newPostHandler);
-
 document
-  .querySelector(".delete-post-btn")
-  .addEventListener("click", deletePostHandler);
+  .querySelector(".comment-btn")
+  .addEventListener("submit", addCommentPostHandler);
