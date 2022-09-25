@@ -1,11 +1,11 @@
-{{!-- dashboard page  where only the posts the user has created appear there--}}
-{{!-- I am taken to the dashboard and presented with any blog posts I have already created and the option to add a new blog post --}}
-{{!-- WHEN I click on the button to add a new blog post
+{{! dashboard page  where only the posts the user has created appear there}}
+{{! I am taken to the dashboard and presented with any blog posts I have already created and the option to add a new blog post }}
+{{! WHEN I click on the button to add a new blog post
 THEN I am prompted to enter both a title and contents for my blog post
 WHEN I click on the button to create a new blog post
 THEN the title and contents of my post are saved and I am taken back to an updated dashboard with my new blog post
 WHEN I click on one of my existing posts in the dashboard
-THEN I am able to delete or update my post and taken back to an updated dashboard --}}
+THEN I am able to delete or update my post and taken back to an updated dashboard }}
 <section class="section">
   <div class="columns is-mobile is-centered">
     <div class="column is-narrow">
@@ -20,9 +20,9 @@ THEN I am able to delete or update my post and taken back to an updated dashboar
     </div>
   </div>
   <div class="columns is-mobile is-centered">
-    <div class="column is-three-quarters-mobile is-one-third-tablet is-one-third-desktop is-one-quarter-widescreen is-one-fifth-fullhd">
+    <div
+      class="column is-three-quarters-mobile is-one-third-tablet is-one-third-desktop is-one-quarter-widescreen is-one-fifth-fullhd">
       <div class="container">
-        {{! card to create a new game }}
         <div class="card mt-4 mb-6">
           <div class="card-content">
             <div class="content has-text-centered">
@@ -34,21 +34,18 @@ THEN I am able to delete or update my post and taken back to an updated dashboar
                     <input class="input" type="text" id="new-post-title" />
                   </div>
                 </div>
-                 <div class="field">
-                  <label class="label new-game-name">Content of new post</label>
+                <div class="field">
                   <div class="control">
-                    <input class="input" type="text" id="new-post-content" />
-                  </div
+                    <textarea class="textarea label new-post-content">Content of
+                      new post</textarea>
+                  </div>
+                </div>
                 <div class="field">
                   <div class="control">
                     <button
                       class="button has-background-danger-dark has-text-white new-post-btn"
                       type="submit"
-                    >
-                      <i
-                        class="fa fa-circle-o-notch fa-spin mr-3 is-disabled"
-                        id="spinner"
-                      ></i>Create</button>
+                    > Create</button>
                   </div>
                 </div>
               </div>
@@ -58,11 +55,13 @@ THEN I am able to delete or update my post and taken back to an updated dashboar
       </div>
     </div>
   </div>
-  <div class="columns has-text-centered is-centered is-mobile is-flex-wrap-wrap">
+  <div
+    class="columns has-text-centered is-centered is-mobile is-flex-wrap-wrap">
     {{! each blogPost will appear as a card with a button to update a post and a button to delete a post}}
     {{#if blogPosts}}
       {{#each blogPosts as |blogPost|}}
-        <div class="column is-three-quarters-mobile is-one-third-tablet is-one-third-desktop is-one-quarter-widescreen is-one-fifth-fullhd">
+        <div
+          class="column is-three-quarters-mobile is-one-third-tablet is-one-third-desktop is-one-quarter-widescreen is-one-fifth-fullhd">
           <div class="container">
             <div class="card m-3" data-id="{{blogPost.id}}">
               <div class="card-content has-text-centered">
@@ -89,4 +88,4 @@ THEN I am able to delete or update my post and taken back to an updated dashboar
     {{/if}}
   </div>
 </section>
- <script src="../public/js/dashboard.js"></script>
+<script src="../public/js/dashboard.js"></script>
