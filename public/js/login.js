@@ -13,21 +13,21 @@ const loginFormHandler = async (event) => {
 
     if (response.ok) {
       //location to fill out
-      document.location.replace("/");
+      document.location.replace("/homepage");
     } else {
       alert(response.statusText);
     }
   }
 };
 
-function GoToSignUpHandler() {
+function goToSignUpHandler() {
   document.location.replace("/signUp");
 }
 
 document
-  .querySelector(".login-form")
-  .addEventListener("submit", loginFormHandler);
+  .querySelector("#login-btn")
+  .addEventListener("click", loginFormHandler);
 
 document
   .querySelector("#signUp-page-btn")
-  .addEventListener("click", GoToSignUpHandler);
+  .addEventListener("click", goToSignUpHandler);

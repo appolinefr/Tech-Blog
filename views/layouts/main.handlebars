@@ -22,7 +22,7 @@
         <!-- this is the burger menu elements -->
         <a
           role="button"
-          class="navbar-burger has-background-dark is-transparent"
+          class="navbar-burger has-background-light is-transparent"
           id="navbar-burger"
           aria-label="menu"
           aria-expanded="false"
@@ -32,27 +32,25 @@
           <span aria-hidden="true"></span>
         </a>
       </div>
-      <div
-        id="navbar"
-        class="navbar-menu has-background-dark is-transparent">
+      <div id="navbar" class="navbar-menu has-background-light is-transparent">
         <div class="navbar-end">
           {{! if the user is logged in they will see the logout and homepage button }}
-            <div class="navbar-item">
-                <button
-                  class="button navbar-item has-background-dark is-inverted is-size-5 mr-2"
-                  id="homepage"
-                  >Homepage</button>
-                <button
-                  class="button navbar-item has-background-dark is-inverted is-size-5 mr-2"
-                  id="dashboard"
-                  >Dashboard</button>
-                {{#if loggedIn}}
-                <button
-                class="button navbar-item has-background-dark is-size-5"
+          <div class="navbar-item">
+            <button
+              class="button navbar-item has-background-light is-inverted is-size-5 mr-2"
+              id="homepage"
+            >Homepage</button>
+            <button
+              class="button navbar-item has-background-light is-inverted is-size-5 mr-2"
+              id="dashboard"
+            >Dashboard</button>
+            {{#if loggedIn}}
+              <button
+                class="button navbar-item has-background-light is-size-5"
                 id="logout"
-                >Logout</button>
-                {{/if}}
-            </div>
+              >Logout</button>
+            {{/if}}
+          </div>
         </div>
       </div>
     </nav>
