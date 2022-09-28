@@ -11,7 +11,7 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/signUp", async (req, res) => {
-  if (req.session.loggedIn) res.redirect("/saveFile");
+  if (req.session.loggedIn) res.redirect("/dashboard");
   else res.render("signUp");
 });
 
