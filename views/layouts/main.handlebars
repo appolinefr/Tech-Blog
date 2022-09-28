@@ -1,5 +1,4 @@
 <html lang="en">
-
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -37,11 +36,11 @@
           {{! if the user is logged in they will see the logout and homepage button }}
           <div class="navbar-item">
             <button
-              class="button navbar-item has-background-primary has-text-white  is-inverted is-size-5 mr-2"
+              class="button navbar-item has-background-primary has-text-white is-size-5 mr-2"
               id="homepage"
             >Homepage</button>
             <button
-              class="button navbar-item has-background-primary is-inverted has-text-white  is-size-5 mr-2"
+              class="button navbar-item has-background-primary has-text-white  is-size-5 mr-2"
               id="dashboard"
             >Dashboard</button>
             {{#if loggedIn}}
@@ -60,7 +59,7 @@
     </main>
     <!-- Render script for logged in users only -->
     {{#if logged_in}}
-      <script src="../public/js/logout.js"></script>
+      <script src="../../public/js/logout.js"></script>
     {{/if}}
   </body>
 </html>
