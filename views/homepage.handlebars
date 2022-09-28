@@ -1,0 +1,63 @@
+<section class="section">
+  <div
+    class="columns has-text-centered is-centered is-mobile is-flex-wrap-wrap"
+  >
+    {{! each blogPost will appear as a card with a button to update a post and a button to delete a post}}
+    {{#if blogPosts}}
+      {{#each blogPosts as |blogPost|}}
+        <div class="column is-mobile">
+          <div class="container has-text-centered">
+            <div class="card m-3" data-id="{{blogPost.id}}">
+              <div class="card-content has-text-centered">
+                <div class="content">
+                  <h2 class="subtitle">Title: {{blogPost.title}}</h2>
+                  <div class="card-body">
+                    <p class="has-text-centered">{{blogPost.date_created}}</p>
+                    <p class="has-text-centered">{{blogPost.content}}</p>
+                    {{#if loggedIn}}
+                      <button
+                        class="js-modal-trigger button is-primary has-text-white"
+                        data-target="modal-js-example"
+                        data-id="{{blogPost.id}}"
+                        id="comment-post-btn"
+                      >Comment post
+                      </button>
+                    {{/if}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {{/each}}
+    {{/if}}
+  </div>
+</section>
+<div id="modal-js-example" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <div class="box">
+      <h2 class="subtitle has-text-centered">Comment</h2>
+      <div class="field">
+        <div class="control">
+          <textarea
+            class="textarea label new-post-content"
+            placeholder="Content of your post..."
+          ></textarea>
+        </div>
+      </div>
+      <div class="field">
+        <div class="control">
+          <button
+            class="button has-background-primary has-text-white post-comment-btn"
+            type="submit"
+          >
+            Post comment
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="modal-close is-large" aria-label="close"></button>
+</div>
+<script src="../public/js/blogPost.js"></script>
