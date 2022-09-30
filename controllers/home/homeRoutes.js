@@ -11,7 +11,7 @@ router.get("/login", async (req, res) => {
 });
 
 router.get("/signUp", async (req, res) => {
-  if (req.session.loggedIn) res.redirect("/dasboard");
+  if (req.session.loggedIn) res.redirect("/homepage");
   else res.render("signUp");
 });
 
@@ -52,8 +52,13 @@ router.get("/dashboard", withAuth, async (req, res) => {
     });
     const user = users.get({ plain: true });
 
+    const blogPostData = await BlogPost.findAll({ where: { user_id: user.id } });
+    const blogPosts = blogPostData.map((data) => data.get({ plain: true }));
+    
     res.render("dashboard", {
       user,
+      blogPosts,
+      userName: user.name,
       loggedIn: true,
     });
   } catch (err) {
