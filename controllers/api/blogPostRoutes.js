@@ -1,12 +1,14 @@
 const router = require("express").Router();
-const { BlogPost } = require("../../models");
+const { BlogPost, User } = require("../../models");
 const withAuth = require("../../utils/auth");
 const notFound = `No blogpost was found with this id.`;
 
 router.get("/", async (req, res) => {
   try {
-    const blogPostData = await BlogPost.findAll();
-    res.status(200).json(blogPostData);
+    const blogPosts = await BlogPost.findAll({
+      include: [{ model: User }],
+    });
+    res.status(200).json(blogPosts);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -41,16 +43,16 @@ router.put("/:id", withAuth, async (req, res) => {
 
 router.delete("/:id", withAuth, async (req, res) => {
   try {
-    const blogPostData = await BlogPost.destroy({
+    const blogPost = await BlogPost.destroy({
       where: { id: req.params.id },
     });
 
-    if (!blogPostData) {
+    if (!blogPost) {
       res.status(404).json({ message: notFound });
       return;
     }
 
-    res.status(200).json(blogPostData);
+    res.status(200).json(blogPost);
   } catch (err) {
     res.status(500).json(err);
   }

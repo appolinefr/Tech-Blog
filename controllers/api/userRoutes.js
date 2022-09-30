@@ -14,14 +14,14 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    const data = await User.findByPk(req.params.id, {
+    const user = await User.findByPk(req.params.id, {
       include: [{ model: BlogPost}],
     });
 
-    if (data === null) {
+    if (user === null) {
       res.status(404).json({ message: notFound});
       return;
-    } else res.status(200).json(data);
+    } else res.status(200).json(user);
   } catch (error) {
     res.status(500).json(error);
   }
@@ -29,12 +29,12 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const data = await User.create(req.body);
+    const user = await User.create(req.body);
     req.session.save(() => {
-      req.session.userId = data.id;
+      req.session.userId = user.id;
       req.session.loggedIn = true;
 
-      res.status(200).json(data);
+      res.status(200).json(user);
     });
   } catch (error) {
     res.status(500).json(error);
@@ -78,12 +78,12 @@ router.post("/logout", (req, res) => {
 
 router.put("/:id", async (req, res) => {
   try {
-    const data = await User.update(req.body, { where: { id: req.params.id } });
-    if (data[0] === null) {
+    const user = await User.update(req.body, { where: { id: req.params.id } });
+    if (!user) {
       res.status(404).json({ message: notFound });
       return;
     }
-    res.status(200).json(data);
+    res.status(200).json(user);
   } catch (error) {
     res.status(500).json(error);
   }
@@ -91,12 +91,12 @@ router.put("/:id", async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
   try {
-    const data = await User.destroy({ where: { id: req.params.id } });
-    if (data === null) {
+    const user = await User.destroy({ where: { id: req.params.id } });
+    if (user === null) {
       res.status(404).json({ message: notFound});
       return;
     }
-    res.status(200).json(data);
+    res.status(200).json(user);
   } catch (error) {
     res.status(500).json(error);
   }
