@@ -10,12 +10,12 @@
   </head>
   <body>
     <nav
-      class="navbar has-background-primary has-text-white  p-2 has-text-weight-semibold is-transparent"
+      class="navbar has-background-primary has-text-white p-2 has-text-weight-semibold is-transparent"
       role="navigation"
       aria-label="main navigation"
     >
       <div class="navbar-brand">
-        <div class="navbar-item is-size-3 has-text-white ">
+        <div class="navbar-item is-size-3 has-text-white">
           The Tech Blog
         </div>
         <!-- this is the burger menu elements -->
@@ -31,19 +31,24 @@
           <span aria-hidden="true"></span>
         </a>
       </div>
-      <div id="navbar" class="navbar-menu has-background-primary has-text-white is-transparent">
+      <div
+        id="navbar"
+        class="navbar-menu has-background-primary has-text-white is-transparent"
+      >
         <div class="navbar-end">
           {{! if the user is logged in they will see the logout and homepage button }}
           <div class="navbar-item">
             <button
               class="button navbar-item has-background-primary has-text-white is-size-5 mr-2"
-              id="homepage"
-            >Homepage</button>
-            <button
-              class="button navbar-item has-background-primary has-text-white  is-size-5 mr-2"
-              id="dashboard"
-            >Dashboard</button>
+              id="homepage">
+              <a href="/">Homepage</a>
+            </button>
             {{#if loggedIn}}
+              <button
+                class="button navbar-item has-background-primary has-text-white is-size-5 mr-2"
+                id="dashboard">
+                <a href="/dashboard">>Dashboard</a>
+              </button>
               <button
                 class="button navbar-item has-background-primary has-text-white is-size-5"
                 id="logout"
@@ -58,8 +63,8 @@
       {{{body}}}
     </main>
     <!-- Render script for logged in users only -->
-    {{#if logged_in}}
-      <script src="../../public/js/logout.js"></script>
+    {{#if loggedIn}}
+      <script src="/js/logout.js"></script>
     {{/if}}
   </body>
 </html>

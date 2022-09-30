@@ -9,7 +9,7 @@ async function getAllPosts() {
   else return responseData;
 }
 
-const addCommentPostHandler = async (event) => {
+addCommentPostHandler = async (event) => {
   //check data-id or replace with post id
   if (event.target.hasAttribute("data-id")) {
     const postId = event.target.getAttribute("data-id");
@@ -21,7 +21,7 @@ const addCommentPostHandler = async (event) => {
 
     //route to fill out
     if (response.ok) {
-      document.location.replace("/blogpost");
+      document.location.replace("/homepage");
     } else {
       alert("Failed to comment on post");
     }
@@ -29,5 +29,27 @@ const addCommentPostHandler = async (event) => {
 };
 
 document
-  .querySelector(".comment-btn")
-  .addEventListener("submit", addCommentPostHandler);
+  .getElementById("post-comment-btn")
+  .addEventListener("click", addCommentPostHandler);
+
+// Functions to open and close a modal
+
+setModalsUp = () => {
+  function openModal() {
+    const openModal = document.querySelector("#comment-modal");
+    openModal.classList.add("is-active");
+  }
+
+  function closeModal() {
+    const closeModal = document.querySelector("#comment-modal");
+    closeModal.classList.remove("is-active");
+  }
+
+  document
+    .getElementById("js-modal-trigger")
+    .addEventListener("click", openModal);
+
+  document.getElementById("modal-close").addEventListener("click", closeModal);
+};
+
+setModalsUp();

@@ -5,7 +5,7 @@
     {{! each blogPost will appear as a card with a button to update a post and a button to delete a post}}
     {{#if blogPosts}}
       {{#each blogPosts as |blogPost|}}
-        <div class="column is-mobile">
+        <div class="column is-mobile is-12">
           <div class="container has-text-centered">
             <div class="card m-3" data-id="{{blogPost.id}}">
               <div class="card-content has-text-centered">
@@ -14,15 +14,12 @@
                   <div class="card-body">
                     <p class="has-text-centered">{{blogPost.date_created}}</p>
                     <p class="has-text-centered">{{blogPost.content}}</p>
-                    {{#if loggedIn}}
-                      <button
-                        class="js-modal-trigger button is-primary has-text-white"
-                        data-target="modal-js-example"
-                        data-id="{{blogPost.id}}"
-                        id="comment-post-btn"
-                      >Comment post
-                      </button>
-                    {{/if}}
+                    <button
+                      class="js-modal-trigger button is-primary has-text-white"
+                      data-id="{{blogPost.id}}"
+                      id="js-modal-trigger"
+                    >Comment post
+                    </button>
                   </div>
                 </div>
               </div>
@@ -33,7 +30,7 @@
     {{/if}}
   </div>
 </section>
-<div id="modal-js-example" class="modal">
+<div id="comment-modal" class="modal">
   <div class="modal-background"></div>
   <div class="modal-content">
     <div class="box">
@@ -49,8 +46,9 @@
       <div class="field">
         <div class="control">
           <button
-            class="button has-background-primary has-text-white post-comment-btn"
+            class="button has-background-primary has-text-white"
             type="submit"
+            id="post-comment-btn"
           >
             Post comment
           </button>
@@ -58,6 +56,10 @@
       </div>
     </div>
   </div>
-  <button class="modal-close is-large" aria-label="close"></button>
+  <button
+    class="modal-close is-large"
+    aria-label="close"
+    id="modal-close"
+  ></button>
 </div>
-<script src="../public/js/blogPost.js"></script>
+<script src="/js/blogPost.js"></script>
