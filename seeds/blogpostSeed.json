@@ -1,0 +1,16 @@
+
+[
+  {
+    "id": 1,
+    "title": "Regex Tutorial",
+    "content":
+      "A regex, which is short for regular expression, is a sequence of characters that defines a specific search pattern",
+    "user_id": 1
+  },
+  {"id": 2,
+    "title": "React",
+    "content":
+      "React makes it painless to create interactive UIs. Design simple views for each state in your applications.",
+    "user_id": 2
+  }
+]

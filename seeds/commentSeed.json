@@ -1,0 +1,12 @@
+[
+  {"id": 1,
+    "content": "Thanks for the tip!",
+    "blogPostId": 2,
+    "userId": 2
+  },
+  {"id": 2,
+    "content": "This is terrible advice.",
+    "blogPostId": 1,
+    "userId": 1
+  }
+]
