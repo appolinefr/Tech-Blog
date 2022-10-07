@@ -29,15 +29,15 @@ router.get("/", async (req, res) => {
     const blogPosts = blogPostData.map((blogPost) =>
       blogPost.get({ plain: true })
     );
-    const comments = await Comment.findAll({
+    const commentData = await Comment.findAll({
       where: { blogPost_id: req.params.id },
       include: [{ model: User, attributes: ["name"] }],
     });
-    const comment = comments.map((data) => data.get({ plain: true }));
+    const comments = commentData.map((data) => data.get({ plain: true }));
 
     res.render("homepage", {
       blogPosts,
-      comment,
+      comments,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -52,9 +52,11 @@ router.get("/dashboard", withAuth, async (req, res) => {
     });
     const user = users.get({ plain: true });
 
-    const blogPostData = await BlogPost.findAll({ where: { user_id: user.id } });
+    const blogPostData = await BlogPost.findAll({
+      where: { user_id: user.id },
+    });
     const blogPosts = blogPostData.map((data) => data.get({ plain: true }));
-    
+
     res.render("dashboard", {
       user,
       blogPosts,
